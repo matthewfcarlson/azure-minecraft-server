@@ -16,6 +16,7 @@
     },
     "serverType": {
       "type": "string",
+      "defaultValue": "FORGE",
       "allowedValues": ["FORGE", "BUKKIT", "SPIGOT", "PAPER", "AIRPLANE", "PURPUR", "MAGMA", "MOHIST", "CATSERVER", "CANYON", "SPONGEVANILLA", "FABRIC", "LIMBO", "FTBA", "CURSEFORGE"],
       "metadata": {
         "description": "The type of your server"
@@ -66,6 +67,7 @@
     },
     "serverAutoPause": {
       "type": "bool",
+      "defaultValue": "true",
       "metadata": {
         "description": "Whether to autopause the server"
       }
@@ -147,31 +149,31 @@
                 },
                 {
                   "name": "MOTD",
-                  "value": "parameters('messageOfTheDay')]"
+                  "value": "[parameters('messageOfTheDay')]"
                 },
                 {
                   "name": "MODE",
-                  "value": "parameters('serverMode')]"
+                  "value": "[parameters('serverMode')]"
                 },
                 {
                   "name": "TYPE",
-                  "value": "parameters('serverType')]"
+                  "value": "[parameters('serverType')]"
                 },
                 {
                   "name": "DIFFICULTY",
-                  "value": "parameters('serverDifficulty')]"
+                  "value": "[parameters('serverDifficulty')]"
                 },
                 {
                   "name": "RCON_PASSWORD",
-                  "value": "parameters('serverRCONPassword')]"
+                  "value": "[parameters('serverRCONPassword')]"
                 },
                 {
                   "name": "LEVEL_TYPE",
-                  "value": "parameters('serverLevelType')]"
+                  "value": "[parameters('serverLevelType')]"
                 },
                 {
                   "name": "ENABLE_AUTOPAUSE",
-                  "value": "parameters('serverAutoPause')]"
+                  "value": "[parameters('serverAutoPause')]"
                 },
                 {
                   "name": "ENABLE_COMMAND_BLOCK",
