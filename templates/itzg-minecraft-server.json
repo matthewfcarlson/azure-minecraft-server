@@ -8,9 +8,38 @@
         "description": "The name of your minecraft server. Must be unique within Azure"
       }
     },
+    "serverRCONPassword": {
+      "type": "string",
+      "metadata": {
+        "description": "The RCON password, make it secure"
+      }
+    },
+    "serverType": {
+      "type": "string",
+      "allowedValues": ["FORGE", "BUKKIT", "SPIGOT", "PAPER", "AIRPLANE", "PURPUR", "MAGMA", "MOHIST", "CATSERVER", "CANYON", "SPONGEVANILLA", "FABRIC", "LIMBO", "FTBA", "CURSEFORGE"],
+      "metadata": {
+        "description": "The type of your server"
+      }
+    },
+    "serverLevelType": {
+      "type": "string",
+      "defaultValue": "DEFAULT",
+      "allowedValues": ["DEFAULT","FLAT","LARGEBIOMES","AMPLIFIED","CUSTOMIZED","BUFFET","BIOMESOP","BIOMESOPLENTY"],
+      "metadata": {
+        "description": "The level generator type of your server"
+      }
+    },
+    "serverDifficulty": {
+      "type": "string",
+      "defaultValue": "easy",
+      "allowedValues": ["peaceful","easy", "normal", "hard"],
+      "metadata": {
+        "description": "The difficulty of your server"
+      }
+    },
     "minecraftVersion": {
       "type": "string",
-      "defaultValue": "1.16.2",
+      "defaultValue": "1.17.1",
       "metadata": {
         "description": "The version that'll be used by your server"
       }
@@ -21,10 +50,30 @@
         "description": "The server operators usernames, comma-separated."
       }
     },
+    "serverMode": {
+      "type": "string",
+      "defaultValue": "survival",
+      "allowedValues": ["survival", "creative", "adventure", "spectator"],
+      "metadata": {
+        "description": "The server mode: survival, creative, adventure"
+      }
+    },
     "storageAccountName": {
       "type": "string",
       "metadata": {
         "description": "The name of the storage account that'll be used to store the server files. Must be unique within Azure and contain no special characters"
+      }
+    },
+    "serverAutoPause": {
+      "type": "bool",
+      "metadata": {
+        "description": "Whether to autopause the server"
+      }
+    },
+    "messageOfTheDay": {
+      "type": "string",
+      "metadata": {
+        "description": "The message that will be displayed for this server"
       }
     }
   },
@@ -68,7 +117,7 @@
           {
             "name": "[parameters('serverName')]",
             "properties": {
-              "image": "itzg/minecraft-server",
+              "image": "itzg/minecraft-server:java16",
               "ports": [
                 {
                   "protocol": "TCP",
@@ -91,6 +140,42 @@
                 {
                   "name": "OPS",
                   "value": "[parameters('serverOperators')]"
+                },
+                {
+                  "name": "TUNE_VIRTUALIZED",
+                  "value": "true"
+                },
+                {
+                  "name": "MOTD",
+                  "value": "parameters('messageOfTheDay')]"
+                },
+                {
+                  "name": "MODE",
+                  "value": "parameters('serverMode')]"
+                },
+                {
+                  "name": "TYPE",
+                  "value": "parameters('serverType')]"
+                },
+                {
+                  "name": "DIFFICULTY",
+                  "value": "parameters('serverDifficulty')]"
+                },
+                {
+                  "name": "RCON_PASSWORD",
+                  "value": "parameters('serverRCONPassword')]"
+                },
+                {
+                  "name": "LEVEL_TYPE",
+                  "value": "parameters('serverLevelType')]"
+                },
+                {
+                  "name": "ENABLE_AUTOPAUSE",
+                  "value": "parameters('serverAutoPause')]"
+                },
+                {
+                  "name": "ENABLE_COMMAND_BLOCK",
+                  "value": "true"
                 }
               ],
               "resources": {
