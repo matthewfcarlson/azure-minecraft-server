@@ -72,6 +72,21 @@
         "description": "Whether to autopause the server"
       }
     },
+    "serverRollingLogs": {
+      "type": "bool",
+      "defaultValue": "true",
+      "metadata": {
+        "description": "Whether to have auto-rolling logs on the server"
+      }
+    },
+    "serverMaxTickTime": {
+      "type": "int",
+      "defaultValue": -1,
+      "minValue": -1,
+      "metadata": {
+        "description": "The max tick value (-1 being no max)"
+      }
+    },
     "messageOfTheDay": {
       "type": "string",
       "metadata": {
@@ -178,12 +193,24 @@
                 {
                   "name": "ENABLE_COMMAND_BLOCK",
                   "value": "true"
+                },
+                {
+                  "name": "MEMORY",
+                  "value": "3G"
+                },
+                {
+                  "name": "MAX_TICK_TIME",
+                  "value": "[parameters('serverMaxTickTime')]"
+                },
+                {
+                  "name": "ENABLE_ROLLING_LOGS",
+                  "value": "[parameters('serverRollingLogs')]"
                 }
               ],
               "resources": {
                 "requests": {
-                  "memoryInGB": 1.5,
-                  "cpu": 1
+                  "memoryInGB": 4,
+                  "cpu": 2
                 }
               },
               "volumeMounts": [
