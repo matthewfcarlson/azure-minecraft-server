@@ -143,6 +143,10 @@
                 {
                   "protocol": "TCP",
                   "port": 25565
+                },
+                {
+                  "protocol": "TCP",
+                  "port": 25575
                 }
               ],
               "environmentVariables": [
