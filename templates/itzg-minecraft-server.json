@@ -99,6 +99,28 @@
   },
   "resources": [
     {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2018-07-01",
+      "name": "['carlsonmcstorage']",
+      "location": "[resourceGroup().location]",
+      "kind": "StorageV2",
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "properties": {
+        "accessTier": "Hot"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "apiVersion": "2019-04-01",
+      "name": "[concat('carlsonmcstorage', '/default/', variables('shareName'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', 'carlsonmcstorage')]"
+      ]
+    },
+    {
       "type": "Microsoft.ContainerInstance/containerGroups",
       "name": "[parameters('serverName')]",
       "apiVersion": "2018-10-01",
